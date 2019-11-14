@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestFmtGoCodeInMarkdown(t *testing.T) {
+func TestFmtHclCodeInMd(t *testing.T) {
 	normalCases := []struct {
 		outline    string
 		inputfile  string
