@@ -2,7 +2,6 @@
 # Build customization
 builds:
   - main:
-      - cmd/tffmtmd/cli.go
       - cmd/tffmtmd/main.go
     binary: tffmtmd
     goos:
