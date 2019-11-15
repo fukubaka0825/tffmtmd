@@ -1,7 +1,9 @@
 # .goreleaser.yml
 # Build customization
 builds:
-  - main: cmd/tffmtmd/**.go
+  - main:
+      - cmd/tffmtmd/cli.go
+      - cmd/tffmtmd/main.go
     binary: tffmtmd
     goos:
       - windows
