@@ -1,8 +1,6 @@
 # tffmtmd
 
-<img src="https://img.shields.io/badge/go-v1.13-blue.svg"/>
- [![GoDoc](https://godoc.org/github.com/po3rin/gofmtmd?status.svg)](https://godoc.org/github.com/fukubaka0825/tffmtmd)
- [![codecov](https://codecov.io/gh/fukubaka0825/tffmtmd/branch/master/graph/badge.svg)](https://codecov.io/gh/fukubaka0825/tffmtmd)
+<img src="https://img.shields.io/badge/go-v1.13-blue.svg"/>[![GoDoc](https://godoc.org/github.com/po3rin/gofmtmd?status.svg)](https://godoc.org/github.com/fukubaka0825/tffmtmd) [![codecov](https://codecov.io/gh/fukubaka0825/tffmtmd/branch/master/graph/badge.svg)](https://codecov.io/gh/fukubaka0825/tffmtmd)
 
 <img src="image/cover.png" width="640px"/>
 
