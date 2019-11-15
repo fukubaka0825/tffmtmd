@@ -18,7 +18,6 @@ const (
 
 const (
 	NAME    = "tffmtmd"
-	VERSION = "0.0.1"
 	USAGE   = `Usage: tffmtmd [options...] filePath
 
 tffmtmd is a command line tool to format HCL code in Markdown.
