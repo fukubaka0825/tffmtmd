@@ -6,7 +6,6 @@ import (
 	"github.com/po3rin/mdfile"
 	"io"
 	"io/ioutil"
-	"log"
 	"os"
 )
 
@@ -14,6 +13,9 @@ const (
 	ExitCodeOK = iota
 	ExitCodeInvalidArgsError
 	ExitCodeParseFlagsError
+	ExitCodeSyntaxError
+	ExitCodeWriteFileError
+	ExitCodeReadFileError
 )
 
 const (
@@ -62,24 +64,28 @@ func (cli *CLI) Run(args []string) int {
 	filePath := nonFlagArgs[0]
 	md, err := ioutil.ReadFile(filePath)
 	if err != nil {
-		log.Fatalf("failed to read bytes from %v: ", filePath)
+		fmt.Fprintf(cli.errStream,"failed to read bytes from %v: ", filePath)
+		return ExitCodeReadFileError
 	}
 	mdFile := mdfile.NewMdFile(&md, filePath)
 	output, err := mdFile.FmtHclCodeInMd()
 	if err != nil {
-		log.Fatal(err)
+		fmt.Fprint(cli.errStream,err)
+		return ExitCodeSyntaxError
 	}
 
 	if replace {
 		err = ioutil.WriteFile(filePath, output, os.ModePerm)
 		if err != nil {
-			log.Fatalf("failed to writes to %v: ", filePath)
+			fmt.Fprintf(cli.errStream,"failed to writes to %v: ", filePath)
+			return ExitCodeWriteFileError
 		}
 	}
 	if writeFile != "" {
 		err = ioutil.WriteFile(writeFile, output, os.ModePerm)
 		if err != nil {
-			log.Fatalf("failed to writes to %v: ", filePath)
+			fmt.Fprintf(cli.errStream,"failed to writes to %v: ", filePath)
+			return ExitCodeWriteFileError
 		}
 	}
 	if !replace && writeFile == "" {
