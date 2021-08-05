@@ -12,7 +12,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
@@ -30,17 +29,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Install dockle
-        run: |
-          VERSION=$(curl --silent "https://api.github.com/repos/fukubaka0825/dockle/releases/latest" | \
-          grep '"tag_name":' | \
-          sed -E 's/.*"v([^"]+)".*/\1/' \
-          )
-          curl -L -o dockle.deb https://github.com/fukubaka0825/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.deb
-          sudo dpkg -i dockle.deb
-          rm dockle.deb
+      - name: Set up go
+        uses: actions/setup-go@v1
+        with:
+          go-version: '1.16.0'
       - name: Check image with dockle
-        run: dockle -f sarif -o dockle-results.sarif nginx
+        run: |
+          git pull https://github.com/fukubaka0825/dockle.git
+          go run cmd/dockle/main.go -f sarif -o dockle-results.sarif nginx
         env:
           IMAGE_NAME: app
       - name: Upload Trivy scan results to GitHub Security tab
