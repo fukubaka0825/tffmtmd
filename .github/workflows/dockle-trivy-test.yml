@@ -20,9 +20,6 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
-      - name: Check image with dockle
-        run: cat trivy-results.sarif
-
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
         with:
@@ -43,7 +40,7 @@ jobs:
           sudo dpkg -i dockle.deb
           rm dockle.deb
       - name: Check image with dockle
-        run: dockle -f sarif nginx > dockle-results.sarif && sed -i -e '1d' dockle-results.sarif
+        run: dockle -f sarif -o dockle-results.sarif nginx
         env:
           IMAGE_NAME: app
       - name: Upload Trivy scan results to GitHub Security tab
