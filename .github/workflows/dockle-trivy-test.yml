@@ -32,11 +32,11 @@ jobs:
         uses: actions/checkout@v2
       - name: Install dockle
         run: |
-          VERSION=$(curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
+          VERSION=$(curl --silent "https://api.github.com/repos/fukubaka0825/dockle/releases/latest" | \
           grep '"tag_name":' | \
           sed -E 's/.*"v([^"]+)".*/\1/' \
           )
-          curl -L -o dockle.deb https://github.com/goodwithtech/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.deb
+          curl -L -o dockle.deb https://github.com/fukubaka0825/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.deb
           sudo dpkg -i dockle.deb
           rm dockle.deb
       - name: Check image with dockle

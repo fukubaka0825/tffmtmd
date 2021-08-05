@@ -1,0 +1,146 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Dockle",
+          "informationUri": "https://github.com/goodwithtech/dockle",
+          "rules": [
+            {
+              "id": "CIS-DI-0009",
+              "shortDescription": {
+                "text": "Use COPY instead of ADD in Dockerfile"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0009"
+              }
+            },
+            {
+              "id": "CIS-DI-0010",
+              "shortDescription": {
+                "text": "Do not store credential in ENVIRONMENT vars/files"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0010"
+              }
+            },
+            {
+              "id": "DKL-DI-0005",
+              "shortDescription": {
+                "text": "Clear apt-get caches"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#DKL-DI-0005"
+              }
+            },
+            {
+              "id": "DKL-LI-0001",
+              "shortDescription": {
+                "text": "Avoid empty password"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#DKL-LI-0001"
+              }
+            },
+            {
+              "id": "CIS-DI-0001",
+              "shortDescription": {
+                "text": "Create a user for the container"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0001"
+              }
+            },
+            {
+              "id": "CIS-DI-0005",
+              "shortDescription": {
+                "text": "Enable Content trust for Docker"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0005"
+              }
+            },
+            {
+              "id": "CIS-DI-0006",
+              "shortDescription": {
+                "text": "Add HEALTHCHECK instruction to the container image"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0006"
+              }
+            },
+            {
+              "id": "CIS-DI-0008",
+              "shortDescription": {
+                "text": "Confirm safety of setuid/setgid files"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0008"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CIS-DI-0009",
+          "level": "error",
+          "message": {
+            "text": "Use COPY : /bin/sh -c #(nop) ADD file:81c0a803075715d1a6b4f75a29f8a01b21cc170cfc1bff6702317d1be2fe71a3 in /app/credentials.json "
+          }
+        },
+        {
+          "ruleId": "CIS-DI-0010",
+          "level": "error",
+          "message": {
+            "text": "Suspicious filename found : app/credentials.json , Suspicious ENV key found : MYSQL_PASSWD"
+          }
+        },
+        {
+          "ruleId": "DKL-DI-0005",
+          "level": "error",
+          "message": {
+            "text": "Use 'rm -rf /var/lib/apt/lists' after 'apt-get install' : /bin/sh -c apt-get update \u0026\u0026 apt-get install -y git"
+          }
+        },
+        {
+          "ruleId": "DKL-LI-0001",
+          "level": "error",
+          "message": {
+            "text": "No password user found! username : nopasswd"
+          }
+        },
+        {
+          "ruleId": "CIS-DI-0001",
+          "level": "warn",
+          "message": {
+            "text": "Last user should not be root"
+          }
+        },
+        {
+          "ruleId": "CIS-DI-0005",
+          "level": "note",
+          "message": {
+            "text": "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+          }
+        },
+        {
+          "ruleId": "CIS-DI-0006",
+          "level": "note",
+          "message": {
+            "text": "not found HEALTHCHECK statement"
+          }
+        },
+        {
+          "ruleId": "CIS-DI-0008",
+          "level": "note",
+          "message": {
+            "text": "setgid file: grwxr-xr-x usr/bin/wall, setuid file: urwxr-xr-x usr/lib/openssh/ssh-keysign, setuid file: urwxr-xr-x bin/mount, setuid file: urwxr-xr-x usr/bin/newgrp, setuid file: urwxr-xr-x usr/bin/passwd, setuid file: urwxr-xr-x bin/su, setuid file: urwxr-xr-x bin/ping, setuid file: urwxr-xr-x bin/umount, setuid file: urwxr-xr-x usr/bin/gpasswd, setgid file: grwxr-xr-x usr/bin/ssh-agent, setuid file: urwxr-xr-x usr/bin/chfn, setgid file: grwxr-xr-x usr/bin/chage, setgid file: grwxr-xr-x usr/bin/expiry, setuid file: urwxr-xr-x usr/bin/chsh, setgid file: grwxr-xr-x sbin/unix_chkpwd"
+          }
+        }
+      ]
+    }
+  ]
+}
