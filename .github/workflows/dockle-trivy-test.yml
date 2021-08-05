@@ -6,8 +6,8 @@ on:
 env:
   AWS_REGION: ap-northeast-1
 jobs:
-  build:
-    name: Build
+  trivy:
+    name: trivy
     runs-on: ubuntu-18.04
     steps:
       - name: Checkout code
@@ -24,7 +24,12 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: 'trivy-results.sarif'
-
+  dockle:
+    name: dockle
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Install dockle
         run: |
           VERSION=$(curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
