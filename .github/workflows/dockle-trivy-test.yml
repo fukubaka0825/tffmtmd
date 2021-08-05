@@ -40,7 +40,7 @@ jobs:
           sudo dpkg -i dockle.deb
           rm dockle.deb
       - name: Check image with dockle
-        run: dockle -f sarif nginx >> dockle-results.sarif
+        run: dockle -f sarif nginx > dockle-results.sarif && sed '1d' dockle-results.sarif
         env:
           IMAGE_NAME: app
       - name: Upload Trivy scan results to GitHub Security tab
