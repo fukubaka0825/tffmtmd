@@ -16,7 +16,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: 'hello-world'
+          image-ref: 'nginx'
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
@@ -28,6 +28,6 @@ jobs:
 
       - uses: hands-lab/dockle-action@v1
         with:
-          image: 'hello-world'
+          image: 'nginx'
           exit-code: '1'
           exit-level: WARN
