@@ -1,4 +1,4 @@
-2021-08-05T16:30:32.569+0900	[34mINFO[0m	Failed to check latest version. not found version patterns
+2021-08-05T16:40:49.469+0900	[34mINFO[0m	Failed to check latest version. not found version patterns
 {
   "version": "2.1.0",
   "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
@@ -90,7 +90,7 @@
           "ruleId": "CIS-DI-0008",
           "level": "note",
           "message": {
-            "text": "setuid file: urwxr-xr-x usr/bin/chfn, setgid file: grwxr-xr-x usr/bin/chage, setuid file: urwxr-xr-x usr/bin/chsh, setgid file: grwxr-xr-x usr/bin/wall, setuid file: urwxr-xr-x usr/bin/gpasswd, setuid file: urwxr-xr-x bin/su, setuid file: urwxr-xr-x bin/mount, setgid file: grwxr-xr-x usr/bin/expiry, setuid file: urwxr-xr-x usr/bin/passwd, setuid file: urwxr-xr-x bin/umount, setgid file: grwxr-xr-x sbin/unix_chkpwd, setuid file: urwxr-xr-x usr/bin/newgrp"
+            "text": "setuid file: urwxr-xr-x bin/umount, setgid file: grwxr-xr-x sbin/unix_chkpwd, setgid file: grwxr-xr-x usr/bin/wall, setgid file: grwxr-xr-x usr/bin/chage, setuid file: urwxr-xr-x usr/bin/chfn, setuid file: urwxr-xr-x usr/bin/chsh, setuid file: urwxr-xr-x bin/su, setuid file: urwxr-xr-x bin/mount, setuid file: urwxr-xr-x usr/bin/newgrp, setuid file: urwxr-xr-x usr/bin/gpasswd, setuid file: urwxr-xr-x usr/bin/passwd, setgid file: grwxr-xr-x usr/bin/expiry"
           }
         }
       ]
