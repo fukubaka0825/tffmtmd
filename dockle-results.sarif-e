@@ -1,0 +1,99 @@
+2021-08-05T16:25:56.386+0900	[34mINFO[0m	Failed to check latest version. not found version patterns
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Dockle",
+          "informationUri": "https://github.com/goodwithtech/dockle",
+          "rules": [
+            {
+              "id": "CIS-DI-0001",
+              "shortDescription": {
+                "text": "Create a user for the container"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0001"
+              }
+            },
+            {
+              "id": "DKL-DI-0006",
+              "shortDescription": {
+                "text": "Avoid latest tag"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#DKL-DI-0006"
+              }
+            },
+            {
+              "id": "CIS-DI-0005",
+              "shortDescription": {
+                "text": "Enable Content trust for Docker"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0005"
+              }
+            },
+            {
+              "id": "CIS-DI-0006",
+              "shortDescription": {
+                "text": "Add HEALTHCHECK instruction to the container image"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0006"
+              }
+            },
+            {
+              "id": "CIS-DI-0008",
+              "shortDescription": {
+                "text": "Confirm safety of setuid/setgid files"
+              },
+              "help": {
+                "text": "https://github.com/goodwithtech/dockle/blob/master/CHECKPOINT.md#CIS-DI-0008"
+              }
+            }
+          ]
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CIS-DI-0001",
+          "level": "warn",
+          "message": {
+            "text": "Last user should not be root"
+          }
+        },
+        {
+          "ruleId": "DKL-DI-0006",
+          "level": "warn",
+          "message": {
+            "text": "Avoid 'latest' tag"
+          }
+        },
+        {
+          "ruleId": "CIS-DI-0005",
+          "level": "note",
+          "message": {
+            "text": "export DOCKER_CONTENT_TRUST=1 before docker pull/build"
+          }
+        },
+        {
+          "ruleId": "CIS-DI-0006",
+          "level": "note",
+          "message": {
+            "text": "not found HEALTHCHECK statement"
+          }
+        },
+        {
+          "ruleId": "CIS-DI-0008",
+          "level": "note",
+          "message": {
+            "text": "setgid file: grwxr-xr-x usr/bin/expiry, setuid file: urwxr-xr-x bin/umount, setgid file: grwxr-xr-x sbin/unix_chkpwd, setgid file: grwxr-xr-x usr/bin/wall, setuid file: urwxr-xr-x usr/bin/chsh, setuid file: urwxr-xr-x usr/bin/chfn, setgid file: grwxr-xr-x usr/bin/chage, setuid file: urwxr-xr-x usr/bin/newgrp, setuid file: urwxr-xr-x bin/mount, setuid file: urwxr-xr-x bin/su, setuid file: urwxr-xr-x usr/bin/passwd, setuid file: urwxr-xr-x usr/bin/gpasswd"
+          }
+        }
+      ]
+    }
+  ]
+}
