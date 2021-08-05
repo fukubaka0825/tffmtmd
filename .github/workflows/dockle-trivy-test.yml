@@ -1,0 +1,33 @@
+name: dockle-trivy-test
+
+on:
+  pull_request:
+    branches: [ master ]
+env:
+  AWS_REGION: ap-northeast-1
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: 'hello-world'
+          format: 'template'
+          template: '@/contrib/sarif.tpl'
+          output: 'trivy-results.sarif'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - uses: hands-lab/dockle-action@v1
+        with:
+          image: 'hello-world'
+          exit-code: '1'
+          exit-level: WARN
