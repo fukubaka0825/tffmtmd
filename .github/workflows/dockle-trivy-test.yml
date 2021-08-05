@@ -29,16 +29,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: '1.16.0'
-      - name: Check image with dockle
-        run: |
-          git pull https://github.com/fukubaka0825/dockle.git
-          go run cmd/dockle/main.go -f sarif -o dockle-results.sarif nginx
-        env:
-          IMAGE_NAME: app
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
         with:
