@@ -20,14 +20,25 @@ jobs:
           format: 'template'
           template: '@/contrib/sarif.tpl'
           output: 'trivy-results.sarif'
-
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: 'trivy-results.sarif'
 
-      - uses: hands-lab/dockle-action@v1
+      - name: Install dockle
+        run: |
+          VERSION=$(curl --silent "https://api.github.com/repos/goodwithtech/dockle/releases/latest" | \
+          grep '"tag_name":' | \
+          sed -E 's/.*"v([^"]+)".*/\1/' \
+          )
+          curl -L -o dockle.deb https://github.com/goodwithtech/dockle/releases/download/v${VERSION}/dockle_${VERSION}_Linux-64bit.deb
+          sudo dpkg -i dockle.deb
+          rm dockle.deb
+      - name: Check image with dockle
+        run: dockle -f sarif nginx >> dockle-results.sarif
+        env:
+          IMAGE_NAME: app
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v1
         with:
-          image: 'nginx'
-          exit-code: '1'
-          exit-level: WARN
+          sarif_file: 'dockle-results.sarif'
